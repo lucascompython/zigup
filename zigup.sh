@@ -8,15 +8,14 @@ json=$(curl -# $download_url)
 latest_version=$(echo $json | jq -r '.master.version')
 
 installed_version=$(cat zigversion.txt 2>/dev/null)
-if [ $? -eq 0 ]; then
-    if [ "$latest_version" = "$installed_version" ]; then
-        echo " Zig version $latest_version is already installed"
-        exit 0
-    fi
+
+if [ $? -ne 0 ]; then
+    installed_version="NONE"
 fi
 
-if [ -z "$installed_version" ]; then
-    installed_version="NONE"
+if [ "$latest_version" = "$installed_version" ]; then
+    echo " Zig version $latest_version is already installed"
+    exit 0
 fi
 
 echo "Current installed version is $installed_version"
