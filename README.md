@@ -9,3 +9,9 @@ Only works for x86_64-linux.
 It downloads the latest version of master branch from the [official download page](https://ziglang.org/download/) and replaces the current installation with the new one.  
 It's the simple.  
 A symlink is created in /usr/local/bin/zig to the zig binary.
+
+## How to use it?
+
+```bash
+./zigup
+```
