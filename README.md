@@ -8,8 +8,9 @@ Since this updates to the latest master branch it's recommended to also use the 
 
 ## How does it work?
 
-It downloads the latest version of master branch from the [official download page](https://ziglang.org/download/) and replaces the current installation with the new one. 
+It downloads the latest version of master branch from the [official download page](https://ziglang.org/download/) and replaces the current installation with the new one.
 It's that simple.  
+For `ZLS`, it makes the same request that the [official ZLS download page](https://zigtools.org/zls/install/) makes to its API, to then download the latest version.  
 For Linux symlinks are created in `/usr/local/bin/zig` and `/usr/local/bin/zls` to the `zig` and `zls` binary respectively.  
 For Windows the `PATH` environment variable is updated to include the `zig` and `zls` path.
 
