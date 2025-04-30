@@ -1,3 +1,6 @@
 zig/
 zig.*
 zigversion.txt
+zls/
+zls.*
+zlsversion.txt
