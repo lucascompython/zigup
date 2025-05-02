@@ -43,28 +43,29 @@ if [ "$update_zls" = true ]; then
 
     if [ "$zls_installed_version" = "$zls_latest_version" ]; then
         echo "ZLS version $zls_installed_version is already installed"
+    else
+        echo "Current ZLS version is $zls_installed_version"
+        echo "Installing ZLS version $zls_latest_version"
+
+        zls_tarball="https://builds.zigtools.org/zls-linux-x86_64-$zls_latest_version.tar.xz"
+
+        echo "Tarball: $zls_tarball"
+
+        curl -o zls.tar.xz $zls_tarball
+
+        echo "Extracting ZLS..."
+
+        mkdir -p zls
+        pv zls.tar.xz | tar -xJf - -C zls
+
+        rm zls.tar.xz
+
+        sudo ln -s $(pwd)/zls/zls /usr/local/bin/zls 2>/dev/null
+        echo $zls_latest_version > zlsversion.txt
+
+        echo "ZLS version $zls_latest_version installed successfully"
     fi
 
-    echo "Current ZLS version is $zls_installed_version"
-    echo "Installing ZLS version $zls_latest_version"
-
-    zls_tarball="https://builds.zigtools.org/zls-linux-x86_64-$zls_latest_version.tar.xz"
-
-    echo "Tarball: $zls_tarball"
-
-    curl -o zls.tar.xz $zls_tarball
-
-    echo "Extracting ZLS..."
-
-    mkdir -p zls
-    pv zls.tar.xz | tar -xJf - -C zls
-
-    rm zls.tar.xz
-
-    sudo ln -s $(pwd)/zls/zls /usr/local/bin/zls 2>/dev/null
-    echo $zls_latest_version > zlsversion.txt
-
-    echo "ZLS version $zls_latest_version installed successfully"
 fi
 
 if [ "$zig_latest_version" = "$zig_installed_version" ]; then
